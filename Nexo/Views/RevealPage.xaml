@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Nexo.ViewModels"
+             x:Class="Nexo.Views.RevealPage"
+             x:DataType="vm:RevealViewModel"
+             BackgroundColor="{AppThemeBinding Light=#F1EFE8, Dark=#1C1C1A}">
+
+    <VerticalStackLayout Padding="24"
+                         Spacing="24"
+                         VerticalOptions="Center"
+                         MaximumWidthRequest="360">
+
+        <Label Text="passe o celular para"
+               FontSize="13"
+               HorizontalOptions="Center"
+               TextColor="{AppThemeBinding Light=#888780, Dark=#B4B2A9}" />
+
+        <Label Text="{Binding PlayerName}"
+               FontSize="22"
+               FontAttributes="Bold"
+               HorizontalOptions="Center" />
+
+        <!-- Card neutro: igual pra todo mundo, revelado ou não -->
+        <Border StrokeShape="RoundRectangle 16"
+                Stroke="{AppThemeBinding Light=#D3D1C7, Dark=#444441}"
+                StrokeThickness="0.5"
+                BackgroundColor="{AppThemeBinding Light=White, Dark=#2C2C2A}"
+                HeightRequest="340">
+
+            <Grid RowDefinitions="*,Auto,*" Padding="24">
+
+                <!-- Estado oculto -->
+                <VerticalStackLayout Grid.Row="1"
+                                     Spacing="12"
+                                     IsVisible="{Binding IsRevealed, Converter={StaticResource InvertedBoolConverter}}">
+                    <Label Text="&#xea15;"
+                           FontFamily="TablerIcons"
+                           FontSize="40"
+                           HorizontalOptions="Center"
+                           TextColor="{AppThemeBinding Light=#888780, Dark=#888780}" />
+                    <Label Text="toque para revelar sua palavra"
+                           FontSize="14"
+                           HorizontalTextAlignment="Center"
+                           TextColor="{AppThemeBinding Light=#5F5E5A, Dark=#B4B2A9}" />
+                </VerticalStackLayout>
+
+                <!-- Estado revelado: só a palavra, sem nenhuma pista de quem é o impostor -->
+                <Label Grid.Row="1"
+                       Text="{Binding PlayerWord}"
+                       FontSize="26"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"
+                       IsVisible="{Binding IsRevealed}" />
+            </Grid>
+        </Border>
+
+        <Button Text="{Binding ButtonText}"
+                Command="{Binding ToggleRevealCommand}"
+                HeightRequest="48"
+                CornerRadius="8" />
+
+    </VerticalStackLayout>
+</ContentPage>
