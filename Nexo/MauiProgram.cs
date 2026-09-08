@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
+using Nexo.ViewModels;
+using Nexo.Views;
 
 namespace Nexo
 {
@@ -18,6 +20,8 @@ namespace Nexo
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif
+            builder.Services.AddTransient<RevealViewModel>();
+            builder.Services.AddTransient<RevealPage>();
 
             return builder.Build();
         }

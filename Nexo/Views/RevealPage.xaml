@@ -34,8 +34,7 @@
                 <VerticalStackLayout Grid.Row="1"
                                      Spacing="12"
                                      IsVisible="{Binding IsRevealed, Converter={StaticResource InvertedBoolConverter}}">
-                    <Label Text="&#xea15;"
-                           FontFamily="TablerIcons"
+                    <Label Text="👆"
                            FontSize="40"
                            HorizontalOptions="Center"
                            TextColor="{AppThemeBinding Light=#888780, Dark=#888780}" />

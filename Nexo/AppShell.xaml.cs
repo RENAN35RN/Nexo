@@ -1,10 +1,11 @@
-﻿namespace Nexo
+﻿namespace Nexo;
+
+public partial class AppShell : Shell
 {
-    public partial class AppShell : Shell
+    public AppShell()
     {
-        public AppShell()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
+
+        Routing.RegisterRoute("RevealPage", typeof(Views.RevealPage));
     }
 }
